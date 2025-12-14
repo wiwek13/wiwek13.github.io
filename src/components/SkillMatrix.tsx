@@ -33,7 +33,7 @@ export const SkillMatrix = () => {
                         {cat.skills.map((skill) => (
                             <a
                                 key={skill}
-                                href={`https://www.google.com/search?q=${encodeURIComponent(skill + " technology")}`}
+                                href={`https://www.google.com/search?q=${encodeURIComponent("what is " + skill)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-2 py-1 bg-black/50 border border-white/10 text-xs text-gray-300 rounded font-mono hover:text-neon-yellow hover:border-neon-yellow transition-colors cursor-pointer hover:bg-white/5 no-underline"

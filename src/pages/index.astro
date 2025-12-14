@@ -16,6 +16,7 @@ import { SkillMatrix } from '../components/SkillMatrix';
 import { HoloCard } from '../components/HoloCard';
 import { NavHUD } from '../components/NavHUD';
 import { ShellContact } from '../components/ShellContact';
+import SEOKeywords from '../components/SEOKeywords.astro';
 import { DevOpsNetwork } from '../components/DevOpsNetwork';
 import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 ---
@@ -116,4 +117,7 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 
 	<!-- Floating HUD Navigation -->
 	<NavHUD client:load />
+
+	<!-- Hidden SEO Injection -->
+	<SEOKeywords />
 </Layout>
