@@ -7,7 +7,11 @@ export const ABOUT = {
         { value: '35%', label: 'Faster Builds' },
         { value: '99.9%', label: 'Uptime' },
         { value: '25%', label: 'MTTR Reduction' },
-    ]
+    ],
+    education: {
+        degree: "B.Tech in Computer Science",
+        school: "Maulana Azad National Institute Of Technology (NIT BHOPAL)"
+    }
 };
 
 export const EXPERIENCES = [
@@ -128,7 +132,7 @@ export const SKILL_CATEGORIES = [
 
 export const CONTACT = [
     { name: 'Email', value: 'wiwek13@gmail.com', href: 'mailto:wiwek13@gmail.com' },
-    { name: 'LinkedIn', value: 'linkedin.com/in/wiwek13', href: 'https://www.linkedin.com/in/wiwek13/' },
+    { name: 'LinkedIn', value: 'https://www.linkedin.com/in/wiwek13/', href: 'https://www.linkedin.com/in/wiwek13/' },
     { name: 'Location', value: 'India', href: '#' },
     { name: 'Phone', value: '+91 8989879834', href: 'tel:+918989879834' }
 ];

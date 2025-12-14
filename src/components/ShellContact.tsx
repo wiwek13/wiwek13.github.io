@@ -9,7 +9,7 @@ export const ShellContact = () => {
 
                 <div className="flex items-center gap-8 md:gap-12 p-8 rounded-2xl bg-black/40 border border-gray-800 backdrop-blur-sm">
                     {/* LinkedIn */}
-                    <a href="https://linkedin.com/in/vivek-kushwah" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.linkedin.com/in/wiwek13/" target="_blank" rel="noopener noreferrer"
                         className="text-gray-500 hover:text-[#00f3ff] transition-colors hover:scale-110 transform duration-300" aria-label="LinkedIn">
                         <FaLinkedin className="text-4xl md:text-5xl" />
                     </a>
