@@ -110,7 +110,7 @@ export const SKILL_CATEGORIES = [
     },
     {
         category: "Programming & Scripting",
-        skills: ["Python", "Go", "Bash", "YAML", "JavaScript"]
+        skills: ["Python", "Go", "Bash", "YAML"]
     },
     {
         category: "Databases & Caching",
