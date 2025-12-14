@@ -1,29 +1,119 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Skills from '../components/Skills.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Awards from '../components/Awards.astro';
-import Certifications from '../components/Certifications.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import { ScrollLayout } from '../components/ScrollLayout';
+import { CyberHero } from '../components/CyberHero';
+import { SkillMatrix } from '../components/SkillMatrix';
+import { HoloCard } from '../components/HoloCard';
+import { NavHUD } from '../components/NavHUD';
+import Layout from '../layouts/Layout.astro';
+import { ScrollLayout } from '../components/ScrollLayout';
+import Layout from '../layouts/Layout.astro';
+import { ScrollLayout } from '../components/ScrollLayout';
+import Layout from '../layouts/Layout.astro';
+import { ScrollLayout } from '../components/ScrollLayout';
+import { ShellHero } from '../components/ShellHero';
+import { SkillMatrix } from '../components/SkillMatrix';
+import { HoloCard } from '../components/HoloCard';
+import { NavHUD } from '../components/NavHUD';
+import { ShellContact } from '../components/ShellContact';
+import { DevOpsNetwork } from '../components/DevOpsNetwork';
+import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 ---
 
-<Layout
-	title="Vivek Kushwah | DevOps Engineer"
-	description="DevOps Engineer specializing in AWS, Azure, Kubernetes, Terraform, CI/CD, and Platform Engineering. Building scalable, reliable infrastructure."
->
-	<Navigation />
-	<Hero />
-	<About />
-	<Skills />
-	<Experience />
-	<Projects />
-	<Awards />
-	<Certifications />
-	<Contact />
-	<Footer />
+<Layout title="Vivek Kushwah | Cloud Architect">
+	<DevOpsNetwork client:only="react" />
+	<ScrollLayout client:load>
+		<ShellHero client:load />
+
+		<!-- About / Ops Breakdown -->
+		<section id="about">
+			<div class="flex items-center gap-4 mb-8">
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+				<h2 class="text-neon-cyan font-mono tracking-widest uppercase">01 // Identity</h2>
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+				<div class="text-lg text-gray-400 leading-relaxed font-light">
+					<p class="mb-6">{ABOUT.description}</p>
+					<p class="text-white border-l-2 border-neon-pink pl-4 italic">{ABOUT.approach}</p>
+				</div>
+				<div class="grid grid-cols-2 gap-4">
+					{ABOUT.stats.map(stat => (
+						<div class="bg-surface/50 border border-white/5 p-6 text-center hover:border-neon-yellow transition-colors cursor-default">
+							<div class="text-3xl font-bold text-white mb-1">{stat.value}</div>
+							<div class="text-xs text-gray-500 uppercase">{stat.label}</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Skills Matrix -->
+		<section id="skills">
+			<div class="flex items-center gap-4 mb-8">
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+				<h2 class="text-neon-pink font-mono tracking-widest uppercase">02 // Capabilities</h2>
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+			</div>
+			<SkillMatrix client:visible />
+		</section>
+
+		<!-- Experience -->
+		<section id="experience">
+			<div class="flex items-center gap-4 mb-12">
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+				<h2 class="text-neon-yellow font-mono tracking-widest uppercase">03 // Run Logs</h2>
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+			</div>
+			<div class="space-y-6">
+				{EXPERIENCES.map(exp => (
+					<HoloCard 
+						title={exp.role} 
+						subtitle={`${exp.company} | ${exp.period}`}
+						badge="PROFESSIONAL"
+						tags={exp.technologies.slice(0, 5)}
+						client:visible
+					>
+						<ul class="list-disc list-inside space-y-2 marker:text-neon-cyan">
+							{exp.achievements.slice(0, 3).map(item => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</HoloCard>
+				))}
+			</div>
+		</section>
+
+		<!-- Projects -->
+		<section id="projects">
+			<div class="flex items-center gap-4 mb-12">
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+				<h2 class="text-neon-cyan font-mono tracking-widest uppercase">04 // Deployments</h2>
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				{PROJECTS.map(project => (
+					<HoloCard 
+						title={project.title} 
+						badge="SIDE_PROJECT"
+						tags={project.technologies}
+						link="#"
+						client:visible
+					>
+						<p>{project.description}</p>
+					</HoloCard>
+				))}
+			</div>
+		</section>
+
+		<!-- Contact / Terminal -->
+		<ShellContact client:visible />
+		
+		<footer class="text-center py-12 text-gray-700 text-xs font-mono">
+			:: END OF LINE ::
+		</footer>
+	</ScrollLayout>
+
+	<!-- Floating HUD Navigation -->
+	<NavHUD client:load />
 </Layout>
