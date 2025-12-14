@@ -1,0 +1,126 @@
+---
+const experiences = [
+	{
+		company: 'Zebpay',
+		role: 'Engineer',
+		period: '2024/05 – Present',
+		location: 'New Delhi, India',
+		achievements: [
+			'Led the end-to-end migration from Azure API Management (APIM) to AWS API Gateway, involving both legacy and active APIs across multiple teams',
+			'Designed and implemented reusable Terraform modules to standardize infrastructure provisioning across AWS, Azure, and GCP',
+			'Achieved a 40% reduction in cloud spending through architectural refactoring, instance rightsizing, and decommissioning unused resources',
+			'Rebuilt GitHub-based CI/CD pipelines into modular, secure workflows with integrated SAST and container scanning, lowering average build time by 35%',
+			'Deployed a centralized logging and observability platform using Prometheus, Grafana, Thanos, Loki, and Opsgenie',
+			'Managed cross-functional migration projects, including Kafka from a third-party vendor to AWS MSK, Azure Function Apps to AWS Lambda',
+		],
+		technologies: ['AWS', 'Azure', 'GCP', 'Terraform', 'Kubernetes', 'EKS', 'GitHub Actions', 'Prometheus', 'Grafana', 'Docker'],
+	},
+	{
+		company: 'Rizzle',
+		role: 'Engineer',
+		period: '2023/09 – 2024/02',
+		location: 'Hyderabad, India',
+		achievements: [
+			'Designed and provisioned scalable cloud infrastructure using EC2, ElasticSearch, MongoDB with autoscaling, and core AWS services',
+			'Owned Kubernetes manifest authoring and cluster operations, deploying microservices with optimized resource limits, resulting in 20% better resource utilization',
+			'Built and maintained Dockerized application stacks, enforcing image hygiene and minimizing attack surface via multi-stage builds',
+			'Automated delivery workflows with Jenkins, GitHub Actions, AWS CodePipeline, and Argo CD, reducing overall deployment time by 40%',
+			'Developed internal Slack-based release tools in Node.js for cross-functional coordination',
+			'Monitored and tuned system health using Prometheus and Grafana, reducing mean time to recovery (MTTR) by 25%',
+		],
+		technologies: ['AWS', 'EC2', 'ElasticSearch', 'MongoDB', 'Kubernetes', 'Docker', 'Jenkins', 'GitHub Actions', 'ArgoCD', 'Prometheus', 'Grafana'],
+	},
+	{
+		company: 'Vivvix (Numerator + Kantar)',
+		role: 'DevOps Engineer',
+		period: '2022',
+		location: 'India',
+		achievements: [
+			'Provisioned and automated infrastructure from scratch using Terraform and Atlantis for PR-based workflows',
+			'Optimized Docker images to improve performance, reduce size, and accelerate deployments',
+			'Built logging and alerting using ELK stack with Elastalert, Heartbeat, and Status Page, cutting downtime by 25%',
+			'Engineered and refined Azure Pipelines, slashing deployment time by 50% and boosting development velocity',
+			'Deployed and configured AKS clusters with complete network and DNS integration in Azure',
+		],
+		technologies: ['Terraform', 'Atlantis', 'Docker', 'ELK Stack', 'Azure Pipelines', 'Azure', 'Databricks', 'AKS', 'Kubernetes'],
+	},
+	{
+		company: 'Numerator',
+		role: 'DevOps Engineer',
+		period: '2022',
+		location: 'India',
+		achievements: [
+			'Managed and optimized AWS infrastructure using services such as Lambda, RDS, EKS, DMS, EC2, CloudFront, Route 53',
+			'Implemented IaC using Terraform with Atlantis and Terraform Drift, extended to Snowflake infrastructure',
+			'Designed and enhanced CI/CD pipelines on CircleCI and GitHub Actions, reducing runtime by 30%',
+			'Built and maintained Airflow infrastructure with custom Docker images and Kubernetes cluster setup',
+			'Implemented robust monitoring and alerting stack using Prometheus, Grafana, PagerDuty, and Slack',
+		],
+		technologies: ['AWS', 'Lambda', 'RDS', 'EKS', 'Terraform', 'Snowflake', 'CircleCI', 'GitHub Actions', 'Airflow', 'Docker', 'Kubernetes', 'Prometheus', 'Grafana'],
+	},
+];
+---
+
+<section id="experience" class="section-padding bg-slate-900/30">
+	<div class="container-custom">
+		<div class="max-w-3xl mx-auto text-center mb-12 fade-on-scroll">
+			<h2 class="section-title">
+				Work <span class="gradient-text">Experience</span>
+			</h2>
+			<p class="section-subtitle">
+				Building and scaling infrastructure for production systems
+			</p>
+		</div>
+
+		<div class="max-w-5xl mx-auto space-y-6">
+			{experiences.map((exp, index) => (
+				<div class="glass-card p-6 fade-on-scroll card-hover" style={`animation-delay: ${index * 0.1}s;`}>
+					<div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+						<div>
+							<h3 class="text-2xl font-bold text-white mb-1">{exp.role}</h3>
+							<p class="text-lg text-slate-300 font-semibold">{exp.company}</p>
+						</div>
+						<div class="text-left md:text-right mt-2 md:mt-0">
+							<p class="text-slate-400 font-medium">{exp.period}</p>
+							<p class="text-sm text-slate-500">{exp.location}</p>
+						</div>
+					</div>
+
+					<ul class="space-y-2 mb-4">
+						{exp.achievements.map((achievement) => (
+							<li class="flex items-start gap-2 text-slate-300 text-sm">
+								<span class="text-blue-400 mt-1.5">•</span>
+								<span>{achievement}</span>
+							</li>
+						))}
+					</ul>
+
+					<div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+						{exp.technologies.map((tech) => (
+							<span class="tech-tag">{tech}</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.fade-on-scroll').forEach(el => {
+		observer.observe(el);
+	});
+</script>

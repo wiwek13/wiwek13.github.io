@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+	:root {
+		--primary: #3b82f6;
+		--primary-dark: #2563eb;
+		--secondary: #8b5cf6;
+		--accent: #06b6d4;
+		--success: #10b981;
+		--warning: #f59e0b;
+		--danger: #ef4444;
+	}
+
+	* {
+		@apply border-slate-800;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		overflow-x: hidden;
+		font-family: 'Inter', system-ui, sans-serif;
+	}
+
+	body {
+		@apply bg-[#0a0a0f] text-slate-100;
+		overflow-x: hidden;
+		font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+	}
+}
+
+@layer components {
+	.glass {
+		@apply bg-slate-900/40 backdrop-blur-xl border border-slate-800/60;
+	}
+
+	.glass-card {
+		@apply bg-slate-900/60 backdrop-blur-2xl border border-slate-800/80 rounded-2xl;
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+	}
+
+	.gradient-text {
+		@apply bg-clip-text text-transparent;
+		background-image: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+	}
+
+	.gradient-border {
+		position: relative;
+	}
+
+	.gradient-border::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: 1px;
+		background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+	}
+
+	.card-hover {
+		@apply transition-all duration-300;
+	}
+
+	.card-hover:hover {
+		@apply -translate-y-1;
+		box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+	}
+
+	.section-padding {
+		@apply py-20 px-4 sm:px-6 lg:px-8;
+	}
+
+	.container-custom {
+		@apply max-w-7xl mx-auto;
+	}
+
+	.tech-tag {
+		@apply inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium;
+		@apply bg-slate-800/50 text-slate-300 border border-slate-700/50;
+		@apply transition-all duration-200;
+	}
+
+	.tech-tag:hover {
+		@apply bg-slate-700/50 border-slate-600/50 text-white;
+		transform: translateY(-1px);
+	}
+
+	.section-title {
+		@apply text-4xl sm:text-5xl font-bold mb-3;
+	}
+
+	.section-subtitle {
+		@apply text-slate-400 text-lg max-w-2xl mx-auto;
+	}
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	@apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-slate-600;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+	animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+	animation: slideInRight 0.6s ease-out;
+}
+
+/* Intersection Observer */
+.fade-on-scroll {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-on-scroll.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+	@apply font-bold;
+	letter-spacing: -0.02em;
+}
+
+/* Code/terminal styling */
+.code {
+	@apply font-mono text-sm;
+	font-family: 'JetBrains Mono', monospace;
+}

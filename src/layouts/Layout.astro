@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Vivek Kushwah | Senior DevOps Engineer', description = 'Senior DevOps/SRE/Cloud Engineer specializing in AWS, Azure, Kubernetes, Terraform, CI/CD, and Platform Engineering' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://wiwek13.github.io/" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://wiwek13.github.io/og-image.jpg" />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://wiwek13.github.io/" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="https://wiwek13.github.io/og-image.jpg" />
+		
+		<!-- SEO -->
+		<meta name="keywords" content="DevOps, SRE, Cloud Engineer, AWS, Azure, Kubernetes, Terraform, CI/CD, Infrastructure, Platform Engineering, MLOps, GitOps, Observability" />
+		<meta name="author" content="Vivek Kushwah" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href="https://wiwek13.github.io/" />
+		
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#0a0a0f" />
+	</head>
+	<body class="bg-slate-950 text-slate-100 antialiased">
+		<slot />
+	</body>
+</html>

@@ -1,0 +1,64 @@
+---
+const stats = [
+	{ value: '40%', label: 'Cost Reduction' },
+	{ value: '35%', label: 'Faster Builds' },
+	{ value: '99.9%', label: 'Uptime' },
+	{ value: '25%', label: 'MTTR Reduction' },
+];
+---
+
+<section id="about" class="section-padding">
+	<div class="container-custom">
+		<div class="max-w-3xl mx-auto text-center mb-12 fade-on-scroll">
+			<h2 class="section-title">
+				About <span class="gradient-text">Me</span>
+			</h2>
+			<p class="section-subtitle">
+				DevOps Engineer with expertise in building and scaling cloud infrastructure
+			</p>
+		</div>
+
+		<div class="max-w-4xl mx-auto">
+			<div class="glass-card p-8 mb-8 fade-on-scroll">
+				<p class="text-slate-300 text-lg leading-relaxed mb-4">
+					I'm a <strong class="text-white">DevOps Engineer</strong> at <strong class="text-white">ZebPay</strong>, where I leverage my 
+					BTech in Computer Science to enhance infrastructure reliability, automate deployments, and optimize 
+					cloud operations. With a passion for building scalable systems, I specialize in Kubernetes, 
+					cloud platforms (AWS, Azure), and modern DevOps practices.
+				</p>
+				<p class="text-slate-300 text-lg leading-relaxed">
+					My approach combines deep technical expertise with a focus on measurable business impact—reducing 
+					costs, improving reliability, and accelerating development velocity.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+				{stats.map((stat, index) => (
+					<div class="glass-card p-6 text-center fade-on-scroll" style={`animation-delay: ${index * 0.1}s;`}>
+						<div class="text-3xl font-bold gradient-text mb-2">{stat.value}</div>
+						<div class="text-sm text-slate-400">{stat.label}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.fade-on-scroll').forEach(el => {
+		observer.observe(el);
+	});
+</script>

@@ -1,0 +1,88 @@
+---
+const contactMethods = [
+	{
+		name: 'Email',
+		value: 'wiwek13@gmail.com',
+		href: 'mailto:wiwek13@gmail.com',
+	},
+	{
+		name: 'LinkedIn',
+		value: 'linkedin.com/in/wiwek13',
+		href: 'https://www.linkedin.com/in/wiwek13/',
+	},
+	{
+		name: 'GitHub',
+		value: 'github.com/wiwek13',
+		href: 'https://github.com/wiwek13',
+	},
+	{
+		name: 'Location',
+		value: 'New Delhi, India',
+		href: '#',
+	},
+];
+---
+
+<section id="contact" class="section-padding">
+	<div class="container-custom">
+		<div class="max-w-3xl mx-auto text-center mb-12 fade-on-scroll">
+			<h2 class="section-title">
+				Get In <span class="gradient-text">Touch</span>
+			</h2>
+			<p class="section-subtitle">
+				Open to discussing DevOps opportunities, infrastructure challenges, or collaboration
+			</p>
+		</div>
+
+		<div class="max-w-4xl mx-auto">
+			<div class="grid md:grid-cols-2 gap-4 mb-8">
+				{contactMethods.map((method, index) => (
+					<a
+						href={method.href}
+						target={method.href.startsWith('http') ? '_blank' : undefined}
+						rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+						class="glass-card p-6 fade-on-scroll card-hover"
+						style={`animation-delay: ${index * 0.1}s;`}
+					>
+						<div class="text-sm text-slate-400 mb-1">{method.name}</div>
+						<div class="text-lg font-semibold text-white">{method.value}</div>
+					</a>
+				))}
+			</div>
+
+			<div class="glass-card p-8 text-center fade-on-scroll">
+				<h3 class="text-2xl font-bold text-white mb-4">
+					Let's Build Something Amazing Together
+				</h3>
+				<p class="text-slate-300 mb-6">
+					Whether you're looking for infrastructure solutions, DevOps consulting, or collaboration on open-source projects, I'd love to hear from you.
+				</p>
+				<a
+					href="mailto:wiwek13@gmail.com"
+					class="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+				>
+					Send Message
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.fade-on-scroll').forEach(el => {
+		observer.observe(el);
+	});
+</script>

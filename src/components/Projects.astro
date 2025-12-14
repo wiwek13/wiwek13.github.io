@@ -1,0 +1,62 @@
+---
+const projects = [
+	{
+		title: 'Infrastructure Automation with Terraform and Azure',
+		description: 'Successfully designed and implemented an infrastructure automation project using Terraform and Azure. Created Terraform modules and Git/GitHub best practices to improve reusability, scalability, and code management. Integrated CI/CD pipelines with Azure YAML for the Drift and Atlantis in AKS for automated deployments on pull requests and continuous integration, resulting in a reduction in resource provisioning time.',
+		technologies: ['Terraform', 'Azure', 'Git', 'Atlantis', 'Azure Pipelines', 'Kubernetes', 'Helm'],
+	},
+	{
+		title: 'Monitoring and Observability with Prometheus and Grafana',
+		description: 'Implemented a robust monitoring and observability solution utilizing Prometheus for metric collection from various services with custom exporters and alerting rules, along with Grafana for creating interactive dashboards enabling real-time monitoring, integrated with PagerDuty and Slack for efficient incident management and performance optimization.',
+		technologies: ['AWS', 'EKS', 'Kubernetes', 'Prometheus', 'Grafana', 'Microservices', 'Databases', 'PagerDuty', 'Slack'],
+	},
+];
+---
+
+<section id="projects" class="section-padding">
+	<div class="container-custom">
+		<div class="max-w-3xl mx-auto text-center mb-12 fade-on-scroll">
+			<h2 class="section-title">
+				Featured <span class="gradient-text">Projects</span>
+			</h2>
+			<p class="section-subtitle">
+				Real-world infrastructure solutions with measurable business impact
+			</p>
+		</div>
+
+		<div class="max-w-5xl mx-auto space-y-6">
+			{projects.map((project, index) => (
+				<div class="glass-card p-8 fade-on-scroll card-hover" style={`animation-delay: ${index * 0.1}s;`}>
+					<h3 class="text-2xl font-bold text-white mb-4">{project.title}</h3>
+					<p class="text-slate-300 mb-6 leading-relaxed">
+						{project.description}
+					</p>
+					<div class="flex flex-wrap gap-2">
+						{project.technologies.map((tech) => (
+							<span class="tech-tag">{tech}</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.fade-on-scroll').forEach(el => {
+		observer.observe(el);
+	});
+</script>

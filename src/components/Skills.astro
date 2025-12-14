@@ -1,0 +1,81 @@
+---
+const skillCategories = [
+	{
+		category: 'Cloud Platforms',
+		skills: ['AWS', 'Azure', 'GCP']
+	},
+	{
+		category: 'Container Orchestration',
+		skills: ['Kubernetes', 'Docker', 'Helm', 'Istio']
+	},
+	{
+		category: 'Infrastructure as Code',
+		skills: ['Terraform', 'Ansible', 'CloudFormation', 'Pulumi']
+	},
+	{
+		category: 'CI/CD & GitOps',
+		skills: ['GitHub Actions', 'Jenkins', 'GitLab CI', 'ArgoCD', 'Flux']
+	},
+	{
+		category: 'Monitoring & Observability',
+		skills: ['Prometheus', 'Grafana', 'ELK Stack', 'Datadog', 'New Relic']
+	},
+	{
+		category: 'Programming & Scripting',
+		skills: ['Python', 'Go', 'Bash', 'YAML', 'JavaScript']
+	},
+	{
+		category: 'Databases & Caching',
+		skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Neo4j']
+	},
+	{
+		category: 'SRE & Platform Engineering',
+		skills: ['Service Mesh', 'Chaos Engineering', 'Cost Optimization', 'DevSecOps']
+	},
+];
+---
+
+<section id="skills" class="section-padding bg-slate-900/30">
+	<div class="container-custom">
+		<div class="max-w-3xl mx-auto text-center mb-12 fade-on-scroll">
+			<h2 class="section-title">
+				Technical <span class="gradient-text">Expertise</span>
+			</h2>
+			<p class="section-subtitle">
+				Comprehensive expertise across the modern DevOps and cloud infrastructure stack
+			</p>
+		</div>
+
+		<div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+			{skillCategories.map((category, index) => (
+				<div class="glass-card p-6 fade-on-scroll card-hover" style={`animation-delay: ${index * 0.05}s;`}>
+					<h3 class="text-lg font-bold text-white mb-4">{category.category}</h3>
+					<div class="flex flex-wrap gap-2">
+						{category.skills.map((skill) => (
+							<span class="tech-tag text-xs">{skill}</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	const observerOptions = {
+		threshold: 0.1,
+		rootMargin: '0px 0px -50px 0px'
+	};
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+			}
+		});
+	}, observerOptions);
+
+	document.querySelectorAll('.fade-on-scroll').forEach(el => {
+		observer.observe(el);
+	});
+</script>
