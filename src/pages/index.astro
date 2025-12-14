@@ -27,22 +27,22 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 		<ShellHero client:load />
 
 		<!-- About / Ops Breakdown -->
-		<section id="about">
-			<div class="flex items-center gap-4 mb-8">
+		<section id="about" class="mb-16">
+			<div class="flex items-center gap-4 mb-10">
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 				<h2 class="text-neon-cyan font-mono tracking-widest uppercase">01 // Identity</h2>
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 				<div class="text-lg text-gray-400 leading-relaxed font-light">
 					<p class="mb-6">{ABOUT.description}</p>
 					<p class="text-white border-l-2 border-neon-pink pl-4 italic">{ABOUT.approach}</p>
 				</div>
 				<div class="grid grid-cols-2 gap-4">
 					{ABOUT.stats.map(stat => (
-						<div class="bg-surface/50 border border-white/5 p-6 text-center hover:border-neon-yellow transition-colors cursor-default">
-							<div class="text-3xl font-bold text-white mb-1">{stat.value}</div>
-							<div class="text-xs text-gray-500 uppercase">{stat.label}</div>
+						<div class="bg-[#112240]/30 border border-white/5 p-6 text-center hover:bg-[#112240]/50 hover:border-neon-cyan hover:shadow-[0_0_15px_rgba(0,243,255,0.2)] transition-all duration-300 cursor-default backdrop-blur-xl group">
+							<div class="text-3xl font-bold text-white mb-1 group-hover:text-neon-cyan transition-colors">{stat.value}</div>
+							<div class="text-xs text-gray-400 uppercase tracking-widest">{stat.label}</div>
 						</div>
 					))}
 				</div>
@@ -50,20 +50,20 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 		</section>
 
 		<!-- Skills Matrix -->
-		<section id="skills">
-			<div class="flex items-center gap-4 mb-8">
+		<section id="skills" class="mb-32">
+			<div class="flex items-center gap-4 mb-10">
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-neon-pink font-mono tracking-widest uppercase">02 // Capabilities</h2>
+				<h2 class="text-neon-cyan font-mono tracking-widest uppercase">02 // Capabilities</h2>
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 			</div>
 			<SkillMatrix client:visible />
 		</section>
 
 		<!-- Experience -->
-		<section id="experience">
-			<div class="flex items-center gap-4 mb-12">
+		<section id="experience" class="mb-32">
+			<div class="flex items-center gap-4 mb-10">
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-neon-yellow font-mono tracking-widest uppercase">03 // Run Logs</h2>
+				<h2 class="text-neon-cyan font-mono tracking-widest uppercase">03 // Run Logs</h2>
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 			</div>
 			<div class="space-y-6">
@@ -71,11 +71,20 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 					<HoloCard 
 						title={exp.role} 
 						subtitle={`${exp.company} | ${exp.period}`}
-						badge="PROFESSIONAL"
 						tags={exp.technologies.slice(0, 5)}
 						client:visible
 					>
-						<ul class="list-disc list-inside space-y-2 marker:text-neon-cyan">
+						{exp.awards && (
+							<div class="flex flex-wrap gap-2 mb-4">
+								{exp.awards.map(award => (
+									<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-neon-yellow/10 text-neon-yellow border border-neon-yellow/20">
+										<span>🏆</span>
+										{award}
+									</span>
+								))}
+							</div>
+						)}
+						<ul class="list-disc list-inside space-y-2 marker:text-neon-cyan text-gray-400">
 							{exp.achievements.slice(0, 3).map(item => (
 								<li>{item}</li>
 							))}
@@ -86,22 +95,20 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 		</section>
 
 		<!-- Projects -->
-		<section id="projects">
-			<div class="flex items-center gap-4 mb-12">
+		<section id="projects" class="mb-32">
+			<div class="flex items-center gap-4 mb-10">
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 				<h2 class="text-neon-cyan font-mono tracking-widest uppercase">04 // Deployments</h2>
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 				{PROJECTS.map(project => (
 					<HoloCard 
 						title={project.title} 
-						badge="SIDE_PROJECT"
 						tags={project.technologies}
-						link="#"
 						client:visible
 					>
-						<p>{project.description}</p>
+						<p class="text-gray-400">{project.description}</p>
 					</HoloCard>
 				))}
 			</div>

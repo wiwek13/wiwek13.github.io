@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { MdArrowOutward } from 'react-icons/md';
+import { SkillTag } from './SkillTag';
 
 interface HoloCardProps {
     title: string;
@@ -21,44 +21,40 @@ export const HoloCard: React.FC<HoloCardProps> = ({ title, subtitle, badge, chil
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{
-                scale: 1.02,
-                rotateX: 5,
-                rotateY: 5,
-                boxShadow: "0 0 20px rgba(0, 243, 255, 0.2)"
+                y: -5,
+                transition: { duration: 0.2 }
             }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            style={{ perspective: 1000 }}
-            className="relative p-6 bg-surface/80 border-l-2 border-l-neon-pink border-t border-t-white/5 border-r border-r-white/5 border-b border-b-white/5 backdrop-blur-md group transform-gpu"
+            className="relative p-6 bg-[#112240]/30 backdrop-blur-xl border border-white/10 rounded-xl hover:bg-[#112240]/50 hover:border-neon-cyan/30 hover:shadow-[0_4px_20px_-5px_rgba(0,243,255,0.15)] transition-all duration-300 group flex flex-col h-full overflow-hidden"
         >
-            {/* Corner Marker */}
-            <div className="absolute top-0 right-0 w-3 h-3 bg-neon-pink opacity-50" />
-
-            <div className="flex justify-between items-start mb-4">
-                <div>
-                    {badge && <div className="text-neon-cyan text-xs font-mono mb-1">{badge}</div>}
-                    <h3 className="text-xl font-bold text-white group-hover:text-neon-pink transition-colors">{title}</h3>
+            <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-xl font-bold text-white group-hover:text-neon-cyan transition-colors">{title}</h3>
+                        {badge && (
+                            <span className="text-[10px] font-mono border border-neon-cyan/30 text-neon-cyan px-1.5 py-0.5 rounded">
+                                {badge}
+                            </span>
+                        )}
+                    </div>
                     {subtitle && <div className="text-sm text-gray-400 font-mono">{subtitle}</div>}
                 </div>
-                {link && (
-                    <a href={link} className="text-neon-yellow text-xl hover:scale-125 transition-transform">
-                        <MdArrowOutward />
-                    </a>
-                )}
+                {/* Arrow removed as requested for cleaner look, or only if strictly needed */}
             </div>
 
-            <div className="text-gray-300 mb-6 text-sm leading-relaxed">
+            <div className="text-gray-300 mb-6 text-sm leading-relaxed flex-grow relative z-10">
                 {children}
             </div>
 
             {tags && (
-                <div className="flex flex-wrap gap-2 mt-auto">
+                <div className="flex flex-wrap gap-2 mt-auto relative z-10">
                     {tags.map(tag => (
-                        <span key={tag} className="text-[10px] uppercase tracking-wide border border-white/10 px-2 py-1 text-gray-400 hover:border-neon-cyan hover:text-neon-cyan transition-colors">
-                            {tag}
-                        </span>
+                        <SkillTag key={tag} skill={tag} />
                     ))}
                 </div>
             )}
+
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
         </motion.div>
     );
 };

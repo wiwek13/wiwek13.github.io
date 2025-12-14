@@ -2,15 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SKILL_CATEGORIES } from '../data/portfolio';
 import { MdCode, MdCloud, MdStorage, MdDns, MdSpeed, MdBuild } from 'react-icons/md';
+import { SkillTag } from './SkillTag';
 
 // Helper to map icons to categories
 const getIcon = (category: string) => {
     if (category.includes('Cloud')) return <MdCloud className="text-neon-cyan" />;
-    if (category.includes('Container')) return <MdDns className="text-neon-pink" />;
-    if (category.includes('Code')) return <MdCode className="text-neon-yellow" />;
-    if (category.includes('Data')) return <MdStorage className="text-green-400" />;
-    if (category.includes('Monitor')) return <MdSpeed className="text-red-400" />;
-    return <MdBuild className="text-gray-400" />;
+    if (category.includes('Container')) return <MdDns className="text-neon-cyan" />;
+    if (category.includes('Code')) return <MdCode className="text-neon-cyan" />;
+    if (category.includes('Data')) return <MdStorage className="text-neon-cyan" />;
+    if (category.includes('Monitor')) return <MdSpeed className="text-neon-cyan" />;
+    return <MdBuild className="text-neon-cyan" />;
 };
 
 export const SkillMatrix = () => {
@@ -22,24 +23,16 @@ export const SkillMatrix = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-surface/50 border border-white/10 p-6 rounded hover:border-neon-cyan/50 hover:shadow-glow-cyan transition-all group"
+                    className="bg-[#112240]/30 backdrop-blur-xl border border-white/10 p-6 rounded-xl hover:border-neon-cyan/40 hover:bg-[#112240]/50 hover:shadow-[0_4px_20px_-5px_rgba(0,243,255,0.15)] transition-all duration-300 group"
                 >
                     <div className="flex items-center gap-3 mb-4 pb-2 border-b border-white/5">
-                        <span className="text-2xl">{getIcon(cat.category)}</span>
+                        <span className="text-2xl opacity-80 group-hover:opacity-100 transition-opacity">{getIcon(cat.category)}</span>
                         <h3 className="text-neon-cyan font-mono text-sm uppercase tracking-widest">{cat.category}</h3>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
                         {cat.skills.map((skill) => (
-                            <a
-                                key={skill}
-                                href={`https://www.google.com/search?q=${encodeURIComponent("what is " + skill)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-2 py-1 bg-black/50 border border-white/10 text-xs text-gray-300 rounded font-mono hover:text-neon-yellow hover:border-neon-yellow transition-colors cursor-pointer hover:bg-white/5 no-underline"
-                            >
-                                {skill}
-                            </a>
+                            <SkillTag key={skill} skill={skill} />
                         ))}
                     </div>
                 </motion.div>
