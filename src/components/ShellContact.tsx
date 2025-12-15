@@ -4,10 +4,10 @@ import { FaLinkedin, FaGithub, FaWhatsapp, FaTelegramPlane } from 'react-icons/f
 
 export const ShellContact = () => {
     return (
-        <section id="contact" className="py-24 font-mono relative z-10 w-full bg-gradient-to-b from-[#0a192f] to-[#112240]">
+        <section id="contact" className="py-24 font-mono relative z-10 w-full bg-white/[0.02] backdrop-blur-md border-t border-white/5">
             <div className="flex flex-col items-center w-full">
 
-                <div className="w-full flex flex-wrap justify-center items-center gap-8 md:gap-16 py-12 border-t border-white/5 backdrop-blur-xl">
+                <div className="w-full flex flex-wrap justify-center items-center gap-8 md:gap-16 py-4">
                     {/* LinkedIn */}
                     <a href="https://www.linkedin.com/in/wiwek13/" target="_blank" rel="noopener noreferrer"
                         className="text-gray-500 hover:text-[#00f3ff] transition-colors hover:scale-110 transform duration-300" aria-label="LinkedIn">

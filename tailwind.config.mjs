@@ -5,11 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#000000', // Void Black
-        surface: '#050a14', // Deep Grid Blue
-        'neon-cyan': '#00f3ff',
-        'neon-pink': '#ff00ff',
-        'neon-yellow': '#ffe600',
+        background: '#030014', // Deep Cosmic Void
+        surface: '#110e24', // Deep Indigo Surface
+        'neon-cyan': '#d946ef', // Electric Fuchsia (Primary)
+        'neon-pink': '#8b5cf6', // Vivid Violet (Secondary)
+        'neon-yellow': '#fbbf24', // Cosmic Gold (Accent)
         'hud-black': '#0a0a0a',
         muted: '#525252',
       },
@@ -18,9 +18,9 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3)',
-        'glow-pink': '0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3)',
-        'glow-yellow': '0 0 10px rgba(255, 230, 0, 0.5), 0 0 20px rgba(255, 230, 0, 0.3)',
+        'glow-cyan': '0 0 10px rgba(217, 70, 239, 0.5), 0 0 20px rgba(217, 70, 239, 0.3)',
+        'glow-pink': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
+        'glow-yellow': '0 0 10px rgba(251, 191, 36, 0.5), 0 0 20px rgba(251, 191, 36, 0.3)',
       },
       backgroundImage: {
         'grid-pattern': "linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px)",
