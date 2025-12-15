@@ -8,7 +8,7 @@ interface SkillTagProps {
 export const SkillTag = ({ skill, className = "" }: SkillTagProps) => {
     return (
         <a
-            href={`https://www.google.com/search?q=${encodeURIComponent("what is " + skill)}`}
+            href={`https://www.google.com/search?q=${encodeURIComponent("What is " + skill + "? OR \"Vivek Kushwah\" \"Senior DevOps Engineer\" OR \"Vivek Kushwah\" \"NIT Bhopal\" OR wiwek13.github.io")}`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}

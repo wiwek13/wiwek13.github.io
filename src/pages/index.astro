@@ -18,6 +18,7 @@ import { NavHUD } from '../components/NavHUD';
 import { ShellContact } from '../components/ShellContact';
 import SEOKeywords from '../components/SEOKeywords.astro';
 import { DevOpsNetwork } from '../components/DevOpsNetwork';
+import Footer from '../components/Footer.astro';
 import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 ---
 
@@ -127,13 +128,12 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 			</div>
 		</section>
 
-		<!-- Contact / Terminal -->
-		<ShellContact client:visible />
-		
-		<footer class="text-center py-12 text-gray-700 text-xs font-mono">
-			:: END OF LINE ::
-		</footer>
 	</ScrollLayout>
+
+	<!-- Contact / Terminal (Full Width) -->
+	<ShellContact client:visible />
+	
+	<Footer />
 
 	<!-- Floating HUD Navigation -->
 	<NavHUD client:load />
