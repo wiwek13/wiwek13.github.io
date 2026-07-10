@@ -1,0 +1,17 @@
+# Jekyll configuration to exclude non-Jekyll files and directories from compilation
+exclude:
+  - src
+  - public
+  - node_modules
+  - .astro
+  - astro.config.mjs
+  - tailwind.config.mjs
+  - tsconfig.json
+  - package.json
+  - package-lock.json
+  - README.md
+  - UPDATE_INSTRUCTIONS.md
+  - PROJECT_SUMMARY.md
+  - DEPLOYMENT.md
+  - HEADSHOT_INSTRUCTIONS.md
+  - Vivek_Kushwah_Senior_Platform_Engineer_latest.pdf
