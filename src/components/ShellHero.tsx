@@ -29,12 +29,12 @@ export const ShellHero = () => {
                         Vivek <span className="font-light text-gray-400">Kushwah</span>
                     </h1>
                     <div className="text-neon-cyan text-sm md:text-base font-mono tracking-widest mb-4">
-                        DEVOPS ENGINEER • SRE
+                        SENIOR DEVOPS / OBSERVABILITY ENGINEER
                     </div>
 
                     <p className="text-gray-400 text-sm md:text-base max-w-lg leading-relaxed font-light mb-6">
-                        Designing, testing, and implementing resilient infrastructure.
-                        Building autonomous systems that scale.
+                        Architecting Observability as Code and Agentic AI infrastructure.
+                        Specialized in multi-cloud reliability and autonomous Kubernetes ecosystems.
                     </p>
 
                     <div className="flex items-center justify-center md:justify-start gap-6">

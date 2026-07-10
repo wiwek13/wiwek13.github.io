@@ -1,138 +1,118 @@
 export const ABOUT = {
     title: "Profile",
-    description: "DevOps Engineer with a background designing, testing and implementing infrastructure and applications. Purpose-driven professional with capacity to be strong team player plus work effectively independently.",
-    approach: "I don't just maintain servers; I build autonomous systems that scale with business needs.",
+    description: "Senior DevOps / Observability Engineer with 5 years of experience in autonomous infra and high-scale Kubernetes ecosystems. Expert in architecting Observability as Code (Grafana, Prometheus) and Agentic AI infrastructure. Specialized in multi-cloud reliability (AWS, OCI, Azure) for fintech platforms, achieving 40% FinOps savings. Two-time recipient of the Power Performer (Zebpay) and Star Spot (Vivvix) awards.",
+    approach: "I architect Observability as Code and Agentic AI systems to make infrastructure self-healing and reliable.",
     stats: [
-        { value: '40%', label: 'Cost Reduction' },
+        { value: '40%', label: 'FinOps Savings' },
         { value: '35%', label: 'Faster Builds' },
-        { value: '99.9%', label: 'Uptime' },
-        { value: '25%', label: 'MTTR Reduction' },
+        { value: '99.99%', label: 'Uptime' },
+        { value: '40%', label: 'Faster RCA' },
     ],
     education: {
-        degree: "B.Tech in Computer Science",
-        school: "Maulana Azad National Institute Of Technology (NIT BHOPAL)"
+        degree: "Bachelor of Technology, Computer Science",
+        school: "MANIT Bhopal",
+        period: "2016 – 2020"
     }
 };
 
 export const EXPERIENCES = [
     {
-        company: "Zebpay",
-        role: "Engineer",
-        period: "2024/05 – Present",
-        awards: ["2x Power Performer"],
-        technologies: ["AWS", "Azure", "Docker", "Terraform", "Kubernetes", "GitHub Actions", "Prometheus", "Grafana", "Thanos", "Loki", "Opsgenie", "Trivy", "Semgrep", "MSK", "Cloudflare"],
+        company: "Nymcard",
+        role: "DevOps Engineer",
+        period: "Feb 2026 - Present",
+        location: "Abu Dhabi, UAE (Remote)",
+        technologies: ["Kubernetes", "Kafka", "PostgreSQL", "RabbitMQ", "Grafana", "GitHub Actions", "Flux", "Argo CD", "LLMs", "Agentic AI", "GitOps"],
         achievements: [
-            "Led the end-to-end migration from Azure API Management (APIM) to AWS API Gateway, involving both legacy and active APIs across multiple teams. Implemented request/response transformation, improved connection security, and optimized gateway configurations — resulting in better latency, simplified management, and seamless integration with backend services.",
-            "Designed and implemented reusable Terraform modules to standardize infrastructure provisioning across AWS, Azure, and GCP. Reduced setup time for new environments. Maintained production-grade Kubernetes clusters across AWS.",
-            "Achieved a 40% reduction in cloud spending through architectural refactoring, instance rightsizing, decommissioning unused resources, and creating proper tagging. Also enabled cluster autoscaling and workload rightsizing, created organization-wide cost monitoring dashboards and audit reports.",
-            "Leveraged AI technologies and tools to enhance automation and operational efficiency across cloud infrastructure management.",
-            "Rebuilt GitHub-based CI/CD pipelines into modular, secure workflows with integrated SAST and container scanning using Trivy and Semgrep. Optimized Dockerfiles to improve build cache utilization, improve security and lowered average build time by 35%.",
-            "Deployed a centralized logging and observability platform using Prometheus, Grafana, Thanos, Loki, and Opsgenie. Enabled multi-environment, multi-account monitoring with alerting policies that reduced mean-time-to-detect (MTTD).",
-            "Managed cross-functional migration projects, including Kafka from a third-party vendor to AWS MSK, Azure Function Apps to AWS Lambda, and legacy Superset migration in production. Coordinated timelines, blockers, and post-migration audits across teams.",
-            "Owned vendor and external team collaboration, including onboarding third-party services, managing access controls, and enforcing security policies. Led infrastructure reviews with platform, security, and analytics teams to align project priorities.",
-            "Implemented automated compliance workflows for patching (via AWS Systems Manager), backup lifecycles (RDS, EBS, ECR, EFS, S3), automated DNS onboarding for new projects, WAF rule enforcement (Cloudflare)."
+            "Automated operator-based lifecycle management for stateful services (Kafka, PostgreSQL, RabbitMQ) for 99.99% uptime, routing SLO alerts to Grafana.",
+            "Built GitHub Actions CI/CD and managed GitOps (Flux/Argo CD) across 8+ Kubernetes clusters, reducing deployment toil for 50+ engineers.",
+            "Architected an Agentic AI Observability Assistant using LLMs to correlate signals, cutting production incident resolution time (RCA) by 40%."
+        ]
+    },
+    {
+        company: "Zebpay",
+        role: "DevOps Engineer",
+        period: "May 2024 - Dec 2025",
+        location: "New Delhi, India",
+        awards: ["Power Performer (2x)"],
+        technologies: ["AWS", "Prometheus", "Grafana", "Thanos", "Loki", "OpenTelemetry", "GitHub Actions", "Trivy", "Semgrep", "Opencost", "Azure APIM", "AWS API Gateway", "EKS", "Karpenter", "Cilium", "OPA", "Terraform", "Helm"],
+        achievements: [
+            "Deployed centralized observability (Prometheus, Grafana, Thanos, Loki, OTel) across AWS accounts, establishing SLOs and VM monitoring.",
+            "Modularized GitHub Actions CI/CD with integrated SAST (Trivy, Semgrep), reducing build times by 35% and automating image hardening.",
+            "Slashed cloud spend by 40% via a FinOps initiative (Opencost) focusing on intelligent scaling, capacity reservations, and consolidation.",
+            "Orchestrated zero-downtime migration from Azure APIM to AWS API Gateway for 2T requests/month, optimizing API latency and backend integration.",
+            "Upgraded AWS EKS clusters with Karpenter (autoscaling), Cilium, and OPA (compliance) using custom Terraform modules and Helm charts."
         ]
     },
     {
         company: "Rizzle",
-        role: "Engineer",
-        period: "2023/09 – 2024/02",
-        technologies: ["AWS", "EC2", "ElasticSearch", "MongoDB", "Kubernetes", "Docker", "Jenkins", "ArgoCD", "CodePipeline", "Node.js", "S3", "CloudFront"],
+        role: "DevOps Engineer",
+        period: "Sep 2023 - Apr 2024",
+        location: "Hyderabad, India",
+        technologies: ["AWS", "Terraform", "CloudFormation", "CloudWatch", "Grafana", "Kubernetes", "Argo CD", "Jenkins", "Node.js", "Slack"],
         achievements: [
-            "Designed and provisioned scalable cloud infrastructure using EC2, ElasticSearch, MongoDB with autoscaling, and core AWS services including RDS, S3, and CloudFront—boosting uptime and responsiveness across critical production workloads.",
-            "Owned Kubernetes manifest authoring and cluster operations, deploying microservices with optimized resource limits, readiness/liveness probes, and autoscaling strategies—resulting in 20% better resource utilization and reduced pod evictions.",
-            "Built and maintained Dockerized application stacks, enforcing image hygiene and minimizing attack surface via multi-stage builds and base image validation across development and production environments.",
-            "Automated delivery workflows with Jenkins, GitHub Actions, AWS CodePipeline, and Argo CD, achieving consistent, rollback-safe deployments and reducing overall deployment time by 40%.",
-            "Developed internal Slack-based release tools in Node.js for cross-functional coordination, integrating CI metadata, approval flows, and on-demand rollout controls.",
-            "Monitored and tuned system health using Prometheus and Grafana, implementing SLO dashboards and alert rules that improved incident detection and reduced mean time to recovery (MTTR) by 25%.",
-            "Led production support for critical systems, triaging outages, coordinating hotfixes, and establishing runbooks to strengthen operational resilience."
+            "Provisioned AWS infrastructure via Terraform and CloudFormation, integrating CloudWatch metrics into Managed Grafana to reduce MTTR by 25%.",
+            "Optimized Kubernetes manifests and HPA scaling for media workloads, improving resource utilization by 20% and eliminating OOM pod evictions.",
+            "Automated delivery via Argo CD/Jenkins and built Node.js Slack integration tools, shortening deployment cycles for internal teams."
         ]
     },
     {
-        company: "Vivvix (Numerator + Kantar)",
+        company: "Vivvix (Numerator + Kantar / Now MediaRadar)",
         role: "DevOps Engineer",
-        period: "2022/04 – 2023/08",
+        period: "Mar 2021 - Aug 2023",
+        location: "Pune, India",
         awards: ["Star Spot Award"],
-        technologies: ["Terraform", "Atlantis", "Docker", "ELK Stack", "Azure Pipelines", "AKS", "Databricks", "ADF", "ML Workspaces", "Heartbeat"],
+        technologies: ["Airflow", "Grafana", "AWS Lambda", "CloudWatch", "X-Ray", "Azure AKS", "Terraform", "Atlantis", "Azure Pipelines", "Snowflake", "Databricks", "AWS DMS"],
         achievements: [
-            "Provisioned and automated infrastructure from scratch using Terraform and Atlantis for PR-based workflows; optimized Docker images to improve performance, reduce size, and accelerate deployments. Built logging and alerting using ELK stack with Elastalert, Heartbeat, and Status Page, cutting downtime by 25%.",
-            "Engineered and refined Azure Pipelines, slashing deployment time by 50% and boosting development velocity. Managed Databricks ETL workflows, cluster provisioning, and alerting with Azure Data Factory and ML Workspaces for seamless data operations.",
-            "Deployed and configured AKS clusters with complete network and DNS integration in Azure, ensuring high availability and consistent application delivery at scale.",
-            "Led production releases, collaborating with cross-functional teams to ensure seamless deployment cycles with minimal disruption and rapid incident resolution"
-        ]
-    },
-    {
-        company: "Numerator",
-        role: "DevOps Engineer",
-        period: "2021/03 – 2022/03",
-        awards: ["Star Spot Award"],
-        technologies: ["AWS", "Lambda", "Terraform", "CircleCI", "Airflow", "Snowflake", "Prometheus", "Grafana", "PagerDuty", "Django", "DMS"],
-        achievements: [
-            "Managed and optimized AWS infrastructure using services such as Lambda, RDS, EKS, DMS, EC2, CloudFront, Route 53, and more; implemented IaC using Terraform with Atlantis and Terraform Drift, extended to Snowflake infrastructure, and built disaster recovery and backup strategies for high availability.",
-            "Designed and enhanced CI/CD pipelines on CircleCI and GitHub Actions, leveraging caching, parallel jobs, and smart branching strategies to reduce runtime by 30%; contributed to unit and integration test coverage, and API development in Django and Airflow Pipelines.",
-            "Built and maintained Airflow infrastructure with custom Docker images and Kubernetes cluster setup; developed and optimized DAGs, implemented DMS task auto-scaling, cutting costs by 40%; managed Snowflake ingestion workflows and warehouse optimization, achieving 35–40% cost reduction.",
-            "Implemented robust monitoring and alerting stack using Prometheus, Grafana, PagerDuty, and Slack-based policies, ensuring timely incident response and improved operational resilience."
+            "Led migration of ETL pipelines from Airflow 1.10 to 2.x with hardened CI/CD flows and Grafana dashboards.",
+            "Standardized application logging/tracing for AWS Lambda using CloudWatch, X-Ray, and Grafana.",
+            "Bootstrapped Azure AKS clusters and provisioned multi-cloud infrastructure using Terraform and Atlantis.",
+            "Cut deployment times by 50% via re-architecting parallel execution and caching in Azure Pipelines.",
+            "Optimized Snowflake/Databricks FinOps and deployed AWS DMS autoscaling to reduce data costs by 40%."
         ]
     }
 ];
 
 export const PROJECTS = [
     {
-        title: "Infrastructure Automation with Terraform and Azure",
-        technologies: ["Terraform", "Azure", "Git", "Atlantis", "Azure Pipelines", "Kubernetes", "Helm"],
-        description: "Successfully designed and implemented an infrastructure automation project using Terraform and Azure. Created Terraform modules and Git/GitHub best practices to improve reusability, scalability, and code management. Integrated CI/CD pipelines with Azure YAML for the Drift and Atlantis in AKS for automated deployments on pull requests and continuous integration, resulting in a reduction in resource provisioning.",
+        title: "Autonomous RCA Agent",
+        technologies: ["LLMs", "Prometheus", "Python", "Agentic AI", "Grafana", "Observability"],
+        description: "Developed an LLM agent correlating Prometheus metrics with deployment logs to accelerate incident root cause analysis.",
         link: "#"
     },
     {
-        title: "Monitoring and Observability with Prometheus and Grafana",
-        technologies: ["AWS", "EKS", "Prometheus", "Grafana", "PagerDuty", "Slack"],
-        description: "Implemented a robust monitoring and observability solution utilizing Prometheus for metric collection from various services with custom exporters and alerting rules, along with Grafana for creating interactive dashboards enabling real-time monitoring, integrated with PagerDuty and Slack for efficient incident management and performance optimization.",
+        title: "Multi-Cluster Observability Platform",
+        technologies: ["AWS", "Azure", "Thanos", "OpenTelemetry", "Prometheus", "Grafana"],
+        description: "Unified AWS/Azure monitoring plane using Thanos and OpenTelemetry for long term metrics and tracing.",
         link: "#"
     }
 ];
 
 export const SKILL_CATEGORIES = [
     {
-        category: "Cloud Platforms",
-        skills: ["AWS", "Azure", "GCP"]
+        category: "Platform & IaC",
+        skills: ["Terraform", "Kubernetes", "EKS", "AKS", "Rancher", "Helm", "Docker"]
     },
     {
-        category: "Container Orchestration",
-        skills: ["Kubernetes", "Docker", "Helm", "Istio"]
+        category: "SRE & Observability",
+        skills: ["Prometheus", "Grafana", "Thanos", "Loki", "Tempo", "OpenTelemetry", "CloudWatch", "Opsgenie", "SLO/SLI"]
     },
     {
-        category: "Infrastructure as Code",
-        skills: ["Terraform", "Ansible", "CloudFormation"]
+        category: "CI/CD & DevSecOps",
+        skills: ["GitHub Actions", "Azure Pipelines", "Argo CD", "Jenkins", "CircleCI", "Trivy", "Semgrep"]
     },
     {
-        category: "CI/CD & GitOps",
-        skills: ["GitHub Actions", "Jenkins", "ArgoCD"]
+        category: "Cloud Ecosystem",
+        skills: ["AWS (Lambda, EKS, ECS, RDS, MSK, DMS)", "Azure (ADF, Databricks, AKS, APIM)", "OCI", "GCP"]
     },
     {
-        category: "Monitoring & Observability",
-        skills: ["Prometheus", "Grafana", "ELK Stack", "New Relic"]
-    },
-    {
-        category: "Programming & Scripting",
-        skills: ["Python", "Go", "Bash", "YAML"]
-    },
-    {
-        category: "Databases & Caching",
-        skills: ["PostgreSQL", "MongoDB", "Redis"]
-    },
-    {
-        category: "SRE & Platform Engineering",
-        skills: ["Service Mesh", "Chaos Engineering", "Cost Optimization", "DevSecOps"]
-    },
-    {
-        category: "Data & Security",
-        skills: ["Snowflake", "Airflow", "Superset", "Cloudflare", "WAF"]
+        category: "AI & Automation",
+        skills: ["LLM Agentic Workflows", "AI Observability", "Python", "Go", "Bash", "Node.js"]
     }
 ];
 
 export const CONTACT = [
     { name: 'Email', value: 'wiwek13@gmail.com', href: 'mailto:wiwek13@gmail.com' },
     { name: 'LinkedIn', value: 'https://www.linkedin.com/in/wiwek13/', href: 'https://www.linkedin.com/in/wiwek13/' },
-    { name: 'Location', value: 'India', href: '#' },
+    { name: 'Location', value: 'Indore, MP, India', href: '#' },
     { name: 'Phone', value: '+91 8989879834', href: 'tel:+918989879834' }
 ];

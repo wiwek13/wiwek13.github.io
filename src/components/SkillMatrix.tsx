@@ -4,13 +4,13 @@ import { SKILL_CATEGORIES } from '../data/portfolio';
 import { MdCode, MdCloud, MdStorage, MdDns, MdSpeed, MdBuild } from 'react-icons/md';
 import { SkillTag } from './SkillTag';
 
-// Helper to map icons to categories
 const getIcon = (category: string) => {
-    if (category.includes('Cloud')) return <MdCloud className="text-neon-cyan" />;
-    if (category.includes('Container')) return <MdDns className="text-neon-cyan" />;
-    if (category.includes('Code')) return <MdCode className="text-neon-cyan" />;
-    if (category.includes('Data')) return <MdStorage className="text-neon-cyan" />;
-    if (category.includes('Monitor')) return <MdSpeed className="text-neon-cyan" />;
+    const lower = category.toLowerCase();
+    if (lower.includes('cloud') || lower.includes('ecosystem')) return <MdCloud className="text-neon-cyan" />;
+    if (lower.includes('platform') || lower.includes('iac') || lower.includes('container')) return <MdDns className="text-neon-cyan" />;
+    if (lower.includes('code') || lower.includes('ci/cd')) return <MdCode className="text-neon-cyan" />;
+    if (lower.includes('data') || lower.includes('db')) return <MdStorage className="text-neon-cyan" />;
+    if (lower.includes('sre') || lower.includes('observability') || lower.includes('monitor')) return <MdSpeed className="text-neon-cyan" />;
     return <MdBuild className="text-neon-cyan" />;
 };
 

@@ -1,16 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { ScrollLayout } from '../components/ScrollLayout';
-import { CyberHero } from '../components/CyberHero';
-import { SkillMatrix } from '../components/SkillMatrix';
-import { HoloCard } from '../components/HoloCard';
-import { NavHUD } from '../components/NavHUD';
-import Layout from '../layouts/Layout.astro';
-import { ScrollLayout } from '../components/ScrollLayout';
-import Layout from '../layouts/Layout.astro';
-import { ScrollLayout } from '../components/ScrollLayout';
-import Layout from '../layouts/Layout.astro';
-import { ScrollLayout } from '../components/ScrollLayout';
 import { ShellHero } from '../components/ShellHero';
 import { SkillMatrix } from '../components/SkillMatrix';
 import { HoloCard } from '../components/HoloCard';
@@ -22,7 +12,7 @@ import Footer from '../components/Footer.astro';
 import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 ---
 
-<Layout title="Vivek Kushwah | Cloud Architect">
+<Layout title="Vivek Kushwah | Senior DevOps / Observability Engineer">
 	<DevOpsNetwork client:only="react" />
 	<ScrollLayout client:load>
 		<ShellHero client:load />
@@ -99,7 +89,7 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 							</div>
 						)}
 						<ul class="list-disc list-inside space-y-2 marker:text-neon-cyan text-gray-400">
-							{exp.achievements.slice(0, 3).map(item => (
+							{exp.achievements.map(item => (
 								<li>{item}</li>
 							))}
 						</ul>
