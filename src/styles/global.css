@@ -6,12 +6,12 @@
 
 @layer base {
 	html {
-		background-color: #000;
+		background-color: #07090e;
 		scroll-behavior: smooth;
 	}
 
 	body {
-		background-color: #0b0c10;
+		background-color: #07090e;
 		color: #f3f4f6;
 		font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 		overflow-x: hidden;
@@ -21,36 +21,35 @@
 
 	/* Cyber Selection */
 	::selection {
-		background-color: #66fcf1;
+		background-color: #00f3ff;
 		color: #000;
 	}
 }
 
 @layer utilities {
 	.bg-grid {
-		background-size: 40px 40px;
-		background-image: linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-			linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-		mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+		background-size: 48px 48px;
+		background-image: 
+			linear-gradient(to right, rgba(0, 243, 255, 0.04) 1px, transparent 1px),
+			linear-gradient(to bottom, rgba(0, 243, 255, 0.04) 1px, transparent 1px);
+		mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
 	}
 
-	/* CRT Scanline Effect */
-	.scanlines::before {
-		content: " ";
-		display: block;
+	/* Smooth, GPU-composited Ambient Vignette */
+	.ambient-vignette {
 		position: fixed;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-		z-index: 100;
-		background-size: 100% 2px, 3px 100%;
+		inset: 0;
 		pointer-events: none;
+		z-index: 1;
+		background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(5, 7, 12, 0.75) 100%);
 	}
 
 	.text-glow {
-		text-shadow: 0 0 5px currentColor;
+		text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+	}
+
+	.text-glow-pink {
+		text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
 	}
 }
 
@@ -60,22 +59,82 @@
 }
 
 ::-webkit-scrollbar-track {
-	background: #000;
+	background: #07090e;
 }
 
 ::-webkit-scrollbar-thumb {
 	background: #00f3ff;
-	border-radius: 0px;
-	/* Square for mech feel */
+	border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #ff00ff;
-	box-shadow: 0 0 10px #ff00ff;
+	background: #ff007f;
+	box-shadow: 0 0 12px #ff007f;
 }
 
 @layer utilities {
 	.clip-hexagon {
 		clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+	}
+}
+
+/* Native Dialog / Command Palette Transitions (Google Modern Web Guidance) */
+dialog:modal {
+	overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+	overflow: hidden;
+	overscroll-behavior: contain;
+	background-color: rgba(3, 5, 8, 0.75);
+	backdrop-filter: blur(8px);
+	transition-property: opacity, display, overlay;
+	transition-duration: 0.25s;
+	transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	transition-behavior: allow-discrete;
+	opacity: 0;
+}
+
+dialog[open]::backdrop {
+	opacity: 1;
+}
+
+@starting-style {
+	dialog[open]::backdrop {
+		opacity: 0;
+	}
+}
+
+dialog.command-dialog {
+	transition-property: opacity, transform, display, overlay;
+	transition-duration: 0.25s;
+	transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+	transition-behavior: allow-discrete;
+	opacity: 0;
+	transform: scale(0.96) translateY(-10px);
+}
+
+dialog.command-dialog[open] {
+	opacity: 1;
+	transform: scale(1) translateY(0);
+}
+
+@starting-style {
+	dialog.command-dialog[open] {
+		opacity: 0;
+		transform: scale(0.96) translateY(-10px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	dialog.command-dialog,
+	dialog.command-dialog[open] {
+		transform: none !important;
+		transition-duration: 0.05s !important;
+	}
+	* {
+		animation-duration: 0.001s !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001s !important;
 	}
 }

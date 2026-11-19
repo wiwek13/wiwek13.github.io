@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 
-export const DevOpsNetwork = () => {
+export const DevOpsNetwork: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const mouseRef = useRef({ x: -1000, y: -1000 });
+    const mouseRef = useRef({ x: -1000, y: -1000, active: false });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -10,184 +10,231 @@ export const DevOpsNetwork = () => {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-        canvas.width = width;
-        canvas.height = height;
+        let animationFrameId: number | null = null;
+        let isRunning = true;
 
-        interface Particle {
+        // Honor reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
+
+        interface Node {
             x: number;
             y: number;
             vx: number;
             vy: number;
             radius: number;
-            originalVx: number;
-            originalVy: number;
-            isCore: boolean; // Core nodes form connections
+            baseAlpha: number;
+            pulseOffset: number;
         }
 
-        const particles: Particle[] = [];
+        // Keep node count bounded for guaranteed 60+ FPS (max 75 nodes)
+        const NODE_COUNT = Math.min(75, Math.max(35, Math.floor((width * height) / 25000)));
+        const MAX_DIST = 140;
+        const MOUSE_RADIUS = 180;
 
-        // Core Nodes (Form connections) - Keep reasonably limited for O(N^2) perf
-        const CORE_COUNT = Math.min(300, Math.floor(width / 6));
-
-        // Dust Particles (Floating background noise) - MAXIMUM OVERDRIVE
-        const DUST_COUNT = 4000;
-
-        const CONNECTION_DISTANCE = 110;
-        const MOUSE_DISTANCE = 250;
-
-        // Initialize Core Nodes
-        for (let i = 0; i < CORE_COUNT; i++) {
-            const vx = (Math.random() - 0.5) * 0.5;
-            const vy = (Math.random() - 0.5) * 0.5;
-            particles.push({
+        const nodes: Node[] = [];
+        for (let i = 0; i < NODE_COUNT; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 0.2 + Math.random() * 0.4;
+            nodes.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx, vy, originalVx: vx, originalVy: vy,
-                radius: Math.random() * 2 + 1.5,
-                isCore: true
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                radius: 1.5 + Math.random() * 1.5,
+                baseAlpha: 0.3 + Math.random() * 0.5,
+                pulseOffset: Math.random() * Math.PI * 2,
             });
         }
 
-        // Initialize Dust
-        for (let i = 0; i < DUST_COUNT; i++) {
-            const vx = (Math.random() - 0.5) * 0.2; // Slower dust
-            const vy = (Math.random() - 0.5) * 0.2;
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx, vy, originalVx: vx, originalVy: vy,
-                radius: Math.random() * 1 + 0.5, // Tiny dust
-                isCore: false
-            });
-        }
+        let time = 0;
 
-        const draw = () => {
+        const render = () => {
+            if (!isRunning) return;
+
+            time += 0.02;
             ctx.clearRect(0, 0, width, height);
 
-            const coreNodes = particles.filter(p => p.isCore); // Cache for connection loop
+            // Update node positions and bounce off walls
+            for (let i = 0; i < nodes.length; i++) {
+                const n = nodes[i];
 
-            particles.forEach((p, i) => {
-                // Mouse Interaction
-                const dxMouse = mouseRef.current.x - p.x;
-                const dyMouse = mouseRef.current.y - p.y;
-                const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-                let isHighlighted = false;
-
-                if (distMouse < MOUSE_DISTANCE) {
-                    // Gentle attraction
-                    const force = (MOUSE_DISTANCE - distMouse) / MOUSE_DISTANCE;
-                    p.vx += dxMouse * force * 0.002;
-                    p.vy += dyMouse * force * 0.002;
-
-                    if (p.isCore && distMouse < 100) isHighlighted = true;
-                } else {
-                    // Return to original
-                    p.vx += (p.originalVx - p.vx) * 0.05;
-                    p.vy += (p.originalVy - p.vy) * 0.05;
-                }
-
-                // Limit speed
-                const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-                const MAX_SPEED = distMouse < MOUSE_DISTANCE ? 3 : (p.isCore ? 1.5 : 0.5);
-                if (speed > MAX_SPEED) {
-                    p.vx = (p.vx / speed) * MAX_SPEED;
-                    p.vy = (p.vy / speed) * MAX_SPEED;
-                }
-
-                p.x += p.vx;
-                p.y += p.vy;
-
-                // Bounce
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                // Draw Particle
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-
-                if (p.isCore) {
-                    ctx.fillStyle = isHighlighted ? '#ffffff' : '#00f3ff';
-                } else {
-                    // Dust is fainter
-                    ctx.fillStyle = 'rgba(0, 243, 255, 0.3)';
-                }
-
-                ctx.fill();
-                ctx.closePath();
-
-                // Connections (Only for Core Nodes)
-                if (p.isCore) {
-                    // Optimization: Only check other core nodes
-                    for (let j = 0; j < coreNodes.length; j++) {
-                        const other = coreNodes[j];
-                        // Don't connect to self or duplicates (simplified check, might redraw some lines but oK)
-                        if (p === other) continue;
-
-                        // Simple distance check optimized
-                        const dx = p.x - other.x;
-                        if (Math.abs(dx) > CONNECTION_DISTANCE) continue; // bounding box check X
-                        const dy = p.y - other.y;
-                        if (Math.abs(dy) > CONNECTION_DISTANCE) continue; // bounding box check Y
-
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < CONNECTION_DISTANCE) {
-                            ctx.beginPath();
-                            ctx.moveTo(p.x, p.y);
-                            ctx.lineTo(other.x, other.y);
-                            const opacity = 1 - distance / CONNECTION_DISTANCE;
-                            ctx.strokeStyle = `rgba(0, 243, 255, ${opacity * 0.25})`;
-                            ctx.lineWidth = 1;
-                            ctx.stroke();
-                            ctx.closePath();
+                if (!prefersReducedMotion) {
+                    // Mouse gravity interaction
+                    if (mouseRef.current.active) {
+                        const dx = mouseRef.current.x - n.x;
+                        const dy = mouseRef.current.y - n.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < MOUSE_RADIUS && dist > 1) {
+                            const force = (1 - dist / MOUSE_RADIUS) * 0.6;
+                            n.vx += (dx / dist) * force;
+                            n.vy += (dy / dist) * force;
                         }
                     }
 
-                    // Mouse Link
-                    if (distMouse < MOUSE_DISTANCE) {
+                    // Natural damping to keep speed smooth
+                    n.vx *= 0.98;
+                    n.vy *= 0.98;
+
+                    // Ensure minimum drift
+                    const currentSpeed = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
+                    if (currentSpeed < 0.2) {
+                        n.vx += (Math.random() - 0.5) * 0.05;
+                        n.vy += (Math.random() - 0.5) * 0.05;
+                    }
+
+                    n.x += n.vx;
+                    n.y += n.vy;
+
+                    // Wrap or bounce edges
+                    if (n.x < 0) { n.x = 0; n.vx *= -1; }
+                    if (n.x > width) { n.x = width; n.vx *= -1; }
+                    if (n.y < 0) { n.y = 0; n.vy *= -1; }
+                    if (n.y > height) { n.y = height; n.vy *= -1; }
+                }
+            }
+
+            // Draw connections with distance check
+            for (let i = 0; i < nodes.length; i++) {
+                const a = nodes[i];
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const b = nodes[j];
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const distSq = dx * dx + dy * dy;
+
+                    if (distSq < MAX_DIST * MAX_DIST) {
+                        const dist = Math.sqrt(distSq);
+                        const alpha = (1 - dist / MAX_DIST) * 0.35;
                         ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
-                        const opacity = 1 - distMouse / MOUSE_DISTANCE;
-                        ctx.strokeStyle = `rgba(255, 0, 255, ${opacity * 0.2})`;
-                        ctx.lineWidth = 1;
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${alpha})`;
+                        ctx.lineWidth = 0.8;
                         ctx.stroke();
-                        ctx.closePath();
                     }
                 }
-            });
 
-            requestAnimationFrame(draw);
+                // Connect to mouse if nearby
+                if (mouseRef.current.active) {
+                    const dxm = a.x - mouseRef.current.x;
+                    const dym = a.y - mouseRef.current.y;
+                    const distSqMouse = dxm * dxm + dym * dym;
+                    if (distSqMouse < MOUSE_RADIUS * MOUSE_RADIUS) {
+                        const distM = Math.sqrt(distSqMouse);
+                        const alphaM = (1 - distM / MOUSE_RADIUS) * 0.45;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
+                        ctx.strokeStyle = `rgba(255, 0, 127, ${alphaM})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw nodes
+            for (let i = 0; i < nodes.length; i++) {
+                const n = nodes[i];
+                const pulse = 1 + Math.sin(time + n.pulseOffset) * 0.3;
+                const r = n.radius * pulse;
+
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 243, 255, ${n.baseAlpha})`;
+                ctx.fill();
+
+                // Core glow
+                if (i % 5 === 0) {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 243, 255, 0.08)';
+                    ctx.fill();
+                }
+            }
+
+            if (!prefersReducedMotion) {
+                animationFrameId = requestAnimationFrame(render);
+            }
         };
 
+        const startAnimation = () => {
+            if (!isRunning) {
+                isRunning = true;
+                if (!animationFrameId && !prefersReducedMotion) {
+                    animationFrameId = requestAnimationFrame(render);
+                }
+            }
+        };
+
+        const stopAnimation = () => {
+            isRunning = false;
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        };
+
+        // Auto-pause when tab is hidden
+        const handleVisibilityChange = () => {
+            if (document.hidden) {
+                stopAnimation();
+            } else {
+                startAnimation();
+            }
+        };
+
+        // Auto-pause when canvas is off-screen
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                startAnimation();
+            } else {
+                stopAnimation();
+            }
+        }, { threshold: 0.05 });
+
+        observer.observe(canvas);
+
         const handleResize = () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            if (prefersReducedMotion) render();
         };
 
         const handleMouseMove = (e: MouseEvent) => {
-            mouseRef.current = { x: e.clientX, y: e.clientY };
+            mouseRef.current.x = e.clientX;
+            mouseRef.current.y = e.clientY;
+            mouseRef.current.active = true;
+        };
+
+        const handleMouseLeave = () => {
+            mouseRef.current.active = false;
         };
 
         window.addEventListener('resize', handleResize);
         window.addEventListener('mousemove', handleMouseMove);
-        const animationId = requestAnimationFrame(draw);
+        document.addEventListener('mouseleave', handleMouseLeave);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        render();
 
         return () => {
+            stopAnimation();
+            observer.disconnect();
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
-            cancelAnimationFrame(animationId);
+            document.removeEventListener('mouseleave', handleMouseLeave);
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
     }, []);
 
     return (
         <canvas
             ref={canvasRef}
-            className="fixed inset-0 z-0 pointer-events-none opacity-30 mix-blend-screen"
+            aria-hidden="true"
+            className="fixed inset-0 z-0 pointer-events-none opacity-40 will-change-transform"
         />
     );
 };
