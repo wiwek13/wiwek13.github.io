@@ -60,35 +60,45 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 
 		<!-- Experience -->
 		<section id="experience" class="mb-32">
-			<div class="flex items-center gap-4 mb-10">
+			<div class="flex items-center gap-4 mb-12">
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 				<h2 class="text-[#00f3ff] font-mono tracking-widest uppercase text-xs sm:text-sm">03 // Run Logs &amp; Production Milestones</h2>
 				<div class="h-[1px] bg-white/10 flex-grow"></div>
 			</div>
-			<div class="space-y-6">
-				{EXPERIENCES.map(exp => (
-					<HoloCard 
-						title={exp.role} 
-						subtitle={`${exp.company} | ${exp.period}`}
-						tags={exp.technologies.slice(0, 6)}
-						client:visible
-					>
-						{exp.awards && (
-							<div class="flex flex-wrap gap-2 mb-4">
-								{exp.awards.map(award => (
-									<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-amber-400/10 text-amber-300 border border-amber-400/20 font-mono">
-										<span>🏆</span>
-										{award}
-									</span>
+			
+			<!-- Illuminated Scrollytelling Spine -->
+			<div class="relative pl-6 md:pl-10 border-l-2 border-white/10 space-y-12">
+				{EXPERIENCES.map((exp, idx) => (
+					<div class="relative group">
+						<!-- Milestone Glowing Pin -->
+						<div class="absolute -left-[31px] md:-left-[47px] top-7 w-4 h-4 rounded-full bg-[#07090e] border-2 border-[#00f3ff] group-hover:scale-125 group-hover:bg-[#00f3ff] transition-all duration-300 shadow-[0_0_12px_rgba(0,243,255,0.6)] flex items-center justify-center">
+							<div class="w-1.5 h-1.5 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
+						</div>
+
+						<HoloCard 
+							title={exp.role} 
+							subtitle={`${exp.company} · ${exp.location || 'Remote'}`}
+							badge={exp.period}
+							tags={exp.technologies.slice(0, 7)}
+							client:visible
+						>
+							{exp.awards && (
+								<div class="flex flex-wrap gap-2 mb-4">
+									{exp.awards.map(award => (
+										<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-amber-400/10 text-amber-300 border border-amber-400/20 font-mono">
+											<span>🏆</span>
+											{award}
+										</span>
+									))}
+								</div>
+							)}
+							<ul class="list-disc list-inside space-y-2 marker:text-[#00f3ff] text-gray-300 text-sm leading-relaxed font-sans font-light">
+								{exp.achievements.map(item => (
+									<li>{item}</li>
 								))}
-							</div>
-						)}
-						<ul class="list-disc list-inside space-y-2 marker:text-[#00f3ff] text-gray-300 text-sm leading-relaxed font-sans font-light">
-							{exp.achievements.map(item => (
-								<li>{item}</li>
-							))}
-						</ul>
-					</HoloCard>
+							</ul>
+						</HoloCard>
+					</div>
 				))}
 			</div>
 		</section>
