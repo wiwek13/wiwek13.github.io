@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MdTerminal, MdRocketLaunch, MdDescription, MdSensors } from 'react-icons/md';
+import { MdTerminal, MdRocketLaunch, MdDescription, MdSensors, MdSportsEsports } from 'react-icons/md';
 import { MagneticButton } from './MagneticButton';
 
 export const ShellHero: React.FC = () => {
@@ -80,20 +80,21 @@ export const ShellHero: React.FC = () => {
                     <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-mono">
                         <MagneticButton strength={0.4}>
                             <a
-                                href="#architecture"
-                                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[#00f3ff] text-black font-semibold hover:bg-white transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transform hover:-translate-y-0.5"
+                                href="/universe"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-[#ff007f] to-[#00f3ff] text-white font-bold hover:brightness-110 transition-all shadow-[0_0_25px_rgba(255,0,127,0.4)] transform hover:-translate-y-0.5"
                             >
-                                <MdRocketLaunch className="text-base" />
-                                <span>Inspect Topology</span>
+                                <MdSportsEsports className="text-lg" />
+                                <span>Launch 3D Playable Cockpit</span>
                             </a>
                         </MagneticButton>
 
                         <MagneticButton strength={0.3}>
                             <a
-                                href="#experience"
+                                href="#cluster-3d"
                                 className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-[#00f3ff]/40 transition-all transform hover:-translate-y-0.5"
                             >
-                                <span>Incident History</span>
+                                <MdRocketLaunch className="text-base text-[#00f3ff]" />
+                                <span>3D Mesh &amp; Chaos</span>
                             </a>
                         </MagneticButton>
 
