@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MdTerminal, MdRocketLaunch, MdDescription, MdSensors } from 'react-icons/md';
 
 export const ShellHero: React.FC = () => {
+    const [imgError, setImgError] = useState(false);
     return (
         <section className="min-h-[70vh] flex flex-col justify-center px-4 md:px-12 pt-8 font-mono relative z-10">
             {/* Live Telemetry Status Pill */}
@@ -117,21 +118,19 @@ export const ShellHero: React.FC = () => {
                     {/* Glowing Avatar Container */}
                     <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden p-[2px] bg-gradient-to-tr from-[#00f3ff] via-transparent to-[#ff007f] shadow-[0_0_35px_rgba(0,243,255,0.25)] group">
                         <div className="w-full h-full rounded-2xl overflow-hidden bg-[#07090e] flex items-center justify-center relative">
-                            <img
-                                src="/me.png"
-                                alt="Vivek Kushwah"
-                                className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500 scale-105"
-                                onError={(e) => {
-                                    // Fallback high-tech placeholder if image not present
-                                    const target = e.target as HTMLImageElement;
-                                    target.style.display = 'none';
-                                }}
-                            />
-                            {/* Fallback Icon if image missing */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center text-[#00f3ff]/60 font-mono text-xs pointer-events-none">
-                                <MdTerminal className="text-4xl text-[#00f3ff] mb-1" />
-                                <span>VK_PLATFORM</span>
-                            </div>
+                            {!imgError ? (
+                                <img
+                                    src="/me.png"
+                                    alt="Vivek Kushwah"
+                                    className="w-full h-full object-cover contrast-110 group-hover:scale-105 transition-all duration-500"
+                                    onError={() => setImgError(true)}
+                                />
+                            ) : (
+                                <div className="flex flex-col items-center justify-center text-[#00f3ff]/70 font-mono text-xs">
+                                    <MdTerminal className="text-4xl text-[#00f3ff] mb-1" />
+                                    <span>VK_PLATFORM</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </motion.div>
