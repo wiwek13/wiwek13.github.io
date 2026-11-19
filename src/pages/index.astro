@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import { ScrollLayout } from '../components/ScrollLayout';
 import { ShellHero } from '../components/ShellHero';
+import { ThreeClusterCanvas } from '../components/ThreeClusterCanvas';
 import { AgenticTraceVisualizer } from '../components/AgenticTraceVisualizer';
 import { SkillMatrix } from '../components/SkillMatrix';
 import { HoloCard } from '../components/HoloCard';
 import { NavHUD } from '../components/NavHUD';
 import { ShellContact } from '../components/ShellContact';
+import { SmoothScroll } from '../components/SmoothScroll';
 import SEOKeywords from '../components/SEOKeywords.astro';
 import { DevOpsNetwork } from '../components/DevOpsNetwork';
 import Footer from '../components/Footer.astro';
@@ -14,10 +16,23 @@ import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
 ---
 
 <Layout title="Vivek Kushwah | Senior Platform & Observability Architect">
+	<SmoothScroll client:load />
 	<DevOpsNetwork client:only="react" />
 	
 	<ScrollLayout client:load>
 		<ShellHero client:load />
+
+		<!-- 3D Three.js Interactive Kubernetes Mesh & Chaos Physics Sandbox -->
+		<section id="cluster-3d" class="relative font-mono -mt-12 mb-20">
+			<div class="flex items-center gap-4 mb-8">
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+				<h2 class="text-[#00f3ff] text-xs sm:text-sm font-mono tracking-widest uppercase flex items-center gap-2">
+					<span>01 // 3D AUTONOMOUS K8S MESH &amp; CHAOS EXPERIMENT</span>
+				</h2>
+				<div class="h-[1px] bg-white/10 flex-grow"></div>
+			</div>
+			<ThreeClusterCanvas client:visible />
+		</section>
 
 		<!-- Interactive Topology & Agentic AI Visualizer -->
 		<AgenticTraceVisualizer client:visible />

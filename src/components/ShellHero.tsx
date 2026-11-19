@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MdTerminal, MdRocketLaunch, MdDescription, MdSensors } from 'react-icons/md';
+import { MagneticButton } from './MagneticButton';
 
 export const ShellHero: React.FC = () => {
     const [imgError, setImgError] = useState(false);
@@ -75,32 +76,38 @@ export const ShellHero: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Action Group */}
+                    {/* Action Group with Magnetic Physics */}
                     <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-mono">
-                        <a
-                            href="#architecture"
-                            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[#00f3ff] text-black font-semibold hover:bg-white transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transform hover:-translate-y-0.5"
-                        >
-                            <MdRocketLaunch className="text-base" />
-                            <span>Inspect Topology</span>
-                        </a>
+                        <MagneticButton strength={0.4}>
+                            <a
+                                href="#architecture"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[#00f3ff] text-black font-semibold hover:bg-white transition-all shadow-[0_0_20px_rgba(0,243,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transform hover:-translate-y-0.5"
+                            >
+                                <MdRocketLaunch className="text-base" />
+                                <span>Inspect Topology</span>
+                            </a>
+                        </MagneticButton>
 
-                        <a
-                            href="#experience"
-                            className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-[#00f3ff]/40 transition-all transform hover:-translate-y-0.5"
-                        >
-                            <span>Incident History</span>
-                        </a>
+                        <MagneticButton strength={0.3}>
+                            <a
+                                href="#experience"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-[#00f3ff]/40 transition-all transform hover:-translate-y-0.5"
+                            >
+                                <span>Incident History</span>
+                            </a>
+                        </MagneticButton>
 
-                        <a
-                            href="/Vivek_Kushwah_Senior_Platform_Engineer_latest.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-gray-400 hover:text-white transition-colors"
-                        >
-                            <MdDescription className="text-base text-[#00f3ff]" />
-                            <span>Resume [PDF]</span>
-                        </a>
+                        <MagneticButton strength={0.3}>
+                            <a
+                                href="/Vivek_Kushwah_Senior_Platform_Engineer_latest.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-gray-400 hover:text-white transition-colors"
+                            >
+                                <MdDescription className="text-base text-[#00f3ff]" />
+                                <span>Resume [PDF]</span>
+                            </a>
+                        </MagneticButton>
                     </div>
                 </motion.div>
 
