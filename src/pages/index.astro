@@ -1,163 +1,75 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { ScrollLayout } from '../components/ScrollLayout';
-import { ShellHero } from '../components/ShellHero';
-import { ThreeClusterCanvas } from '../components/ThreeClusterCanvas';
-import { AgenticTraceVisualizer } from '../components/AgenticTraceVisualizer';
-import { SkillMatrix } from '../components/SkillMatrix';
-import { HoloCard } from '../components/HoloCard';
-import { NavHUD } from '../components/NavHUD';
-import { ShellContact } from '../components/ShellContact';
-import { SmoothScroll } from '../components/SmoothScroll';
+import { PlayableUniverse } from '../components/PlayableUniverse';
 import SEOKeywords from '../components/SEOKeywords.astro';
-import { DevOpsNetwork } from '../components/DevOpsNetwork';
-import Footer from '../components/Footer.astro';
-import { EXPERIENCES, PROJECTS, ABOUT } from '../data/portfolio';
+import { EXPERIENCES, PROJECTS, ABOUT, SKILL_CATEGORIES, CONTACT } from '../data/portfolio';
 ---
 
-<Layout title="Vivek Kushwah | Senior Platform & Observability Architect">
-	<SmoothScroll client:load />
-	<DevOpsNetwork client:only="react" />
-	
-	<ScrollLayout client:load>
-		<ShellHero client:load />
+<Layout title="Vivek Kushwah | Senior Platform & Observability Architect · Playable Cockpit">
+	{/* Main Playable Hyperfluid 3D Cockpit with Real-time Themes */}
+	<main class="w-screen h-screen overflow-hidden bg-[#07090e]">
+		<PlayableUniverse client:only="react" />
+	</main>
 
-		<!-- 3D Three.js Interactive Kubernetes Mesh & Chaos Physics Sandbox -->
-		<section id="cluster-3d" class="relative font-mono -mt-12 mb-20">
-			<div class="flex items-center gap-4 mb-8">
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-[#00f3ff] text-xs sm:text-sm font-mono tracking-widest uppercase flex items-center gap-2">
-					<span>01 // 3D AUTONOMOUS K8S MESH &amp; CHAOS EXPERIMENT</span>
-				</h2>
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-			</div>
-			<ThreeClusterCanvas client:visible />
-		</section>
-
-		<!-- Interactive Topology & Agentic AI Visualizer -->
-		<AgenticTraceVisualizer client:visible />
-
-		<!-- About / Ops Breakdown -->
-		<section id="about" class="mb-16">
-			<div class="flex items-center gap-4 mb-10">
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-[#00f3ff] font-mono tracking-widest uppercase text-xs sm:text-sm">02 // Identity &amp; Philosophy</h2>
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-				<div class="text-base sm:text-lg text-gray-400 leading-relaxed font-light">
-					<p class="mb-6">{ABOUT.description}</p>
-					<p class="text-white border-l-2 border-[#ff007f] pl-4 italic mb-8">{ABOUT.approach}</p>
-					
-					<!-- Education Block -->
-					<div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-sm flex items-center gap-4 hover:border-[#00f3ff]/40 transition-colors duration-300">
-						<div class="w-10 h-10 rounded-lg bg-[#00f3ff]/10 flex items-center justify-center text-[#00f3ff] shrink-0">
-							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.24 50.552 50.552 0 00-2.658.813m-15.482 0A50.553 50.553 0 0112 13.489a50.551 50.551 0 0112-4.133m-15.482 0A50.55 50.55 0 0112 13.489a50.55 50.55 0 0112-4.133M6.342 16.92c.547.268 1.12.517 1.718.741M12 2.251c-1.353 0-2.7.206-4.004.591" />
-							</svg>
-						</div>
-						<div>
-							<div class="text-white font-medium text-sm sm:text-base">{ABOUT.education.school}</div>
-							<div class="text-xs sm:text-sm text-[#00f3ff]/90">{ABOUT.education.degree}</div>
-						</div>
-					</div>
-				</div>
-				<div class="grid grid-cols-2 gap-4">
-					{ABOUT.stats.map(stat => (
-						<div class="bg-white/[0.02] border border-white/10 rounded-xl p-6 text-center hover:border-[#00f3ff] hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all duration-300 cursor-default backdrop-blur-xl group">
-							<div class="text-3xl font-extrabold text-white mb-1 group-hover:text-[#00f3ff] transition-colors">{stat.value}</div>
-							<div class="text-xs text-gray-400 uppercase tracking-widest font-mono">{stat.label}</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-
-		<!-- Experience -->
-		<section id="experience" class="mb-32">
-			<div class="flex items-center gap-4 mb-12">
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-[#00f3ff] font-mono tracking-widest uppercase text-xs sm:text-sm">03 // Run Logs &amp; Production Milestones</h2>
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-			</div>
-			
-			<!-- Illuminated Scrollytelling Spine -->
-			<div class="relative pl-6 md:pl-10 border-l-2 border-white/10 space-y-12">
-				{EXPERIENCES.map((exp, idx) => (
-					<div class="relative group">
-						<!-- Milestone Glowing Pin -->
-						<div class="absolute -left-[31px] md:-left-[47px] top-7 w-4 h-4 rounded-full bg-[#07090e] border-2 border-[#00f3ff] group-hover:scale-125 group-hover:bg-[#00f3ff] transition-all duration-300 shadow-[0_0_12px_rgba(0,243,255,0.6)] flex items-center justify-center">
-							<div class="w-1.5 h-1.5 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
-						</div>
-
-						<HoloCard 
-							title={exp.role} 
-							subtitle={`${exp.company} · ${exp.location || 'Remote'}`}
-							badge={exp.period}
-							tags={exp.technologies.slice(0, 7)}
-							client:visible
-						>
-							{exp.awards && (
-								<div class="flex flex-wrap gap-2 mb-4">
-									{exp.awards.map(award => (
-										<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-amber-400/10 text-amber-300 border border-amber-400/20 font-mono">
-											<span>🏆</span>
-											{award}
-										</span>
-									))}
-								</div>
-							)}
-							<ul class="list-disc list-inside space-y-2 marker:text-[#00f3ff] text-gray-300 text-sm leading-relaxed font-sans font-light">
-								{exp.achievements.map(item => (
-									<li>{item}</li>
-								))}
-							</ul>
-						</HoloCard>
-					</div>
+	{/* Accessible Screen-Reader & Semantic Search Engine Indexing (visually hidden from playable canvas) */}
+	<div class="sr-only" aria-label="Vivek Kushwah Portfolio Content Index">
+		<h1>Vivek Kushwah - Senior Platform &amp; Observability Architect</h1>
+		<p>{ABOUT.description}</p>
+		<p>{ABOUT.approach}</p>
+		<div>
+			<h2>Key Metrics</h2>
+			<ul>
+				{ABOUT.stats.map(s => (
+					<li>{s.label}: {s.value}</li>
 				))}
-			</div>
-		</section>
-
-		<!-- Skills Matrix -->
-		<section id="skills" class="mb-32">
-			<div class="flex items-center gap-4 mb-10">
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-[#00f3ff] font-mono tracking-widest uppercase text-xs sm:text-sm">04 // Core Capabilities &amp; Tooling</h2>
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-			</div>
-			<SkillMatrix client:visible />
-		</section>
-
-		<!-- Projects -->
-		<section id="projects" class="mb-32">
-			<div class="flex items-center gap-4 mb-10">
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-				<h2 class="text-[#00f3ff] font-mono tracking-widest uppercase text-xs sm:text-sm">05 // Platform Deployments</h2>
-				<div class="h-[1px] bg-white/10 flex-grow"></div>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				{PROJECTS.map(project => (
-					<HoloCard 
-						title={project.title} 
-						tags={project.technologies}
-						client:visible
-					>
-						<p class="text-gray-300 text-sm leading-relaxed font-sans font-light">{project.description}</p>
-					</HoloCard>
+			</ul>
+		</div>
+		<div>
+			<h2>Education</h2>
+			<p>{ABOUT.education.degree} - {ABOUT.education.school} ({ABOUT.education.period})</p>
+		</div>
+		<div>
+			<h2>Career Experiences</h2>
+			{EXPERIENCES.map(exp => (
+				<article>
+					<h3>{exp.role} at {exp.company} ({exp.period}) - {exp.location}</h3>
+					<ul>
+						{exp.achievements.map(a => (
+							<li>{a}</li>
+						))}
+					</ul>
+					<p>Tech: {exp.technologies.join(', ')}</p>
+				</article>
+			))}
+		</div>
+		<div>
+			<h2>Featured Projects</h2>
+			{PROJECTS.map(p => (
+				<article>
+					<h3>{p.title}</h3>
+					<p>{p.description}</p>
+					<p>Tech: {p.technologies.join(', ')}</p>
+				</article>
+			))}
+		</div>
+		<div>
+			<h2>Technical Stack &amp; Skill Matrix</h2>
+			{SKILL_CATEGORIES.map(cat => (
+				<div>
+					<h3>{cat.category}</h3>
+					<p>{cat.skills.join(', ')}</p>
+				</div>
+			))}
+		</div>
+		<div>
+			<h2>Contact &amp; Transmissions</h2>
+			<ul>
+				{CONTACT.map(c => (
+					<li><a href={c.href}>{c.name}: {c.value}</a></li>
 				))}
-			</div>
-		</section>
+			</ul>
+		</div>
+	</div>
 
-	</ScrollLayout>
-
-	<!-- Contact / Terminal (Full Width) -->
-	<ShellContact client:visible />
-	
-	<Footer />
-
-	<!-- Floating HUD Navigation -->
-	<NavHUD client:load />
-
-	<!-- Hidden SEO Injection -->
 	<SEOKeywords />
 </Layout>
