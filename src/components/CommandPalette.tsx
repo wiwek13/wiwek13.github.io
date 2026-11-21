@@ -9,7 +9,6 @@ import {
     MdDescription, 
     MdSearch, 
     MdClose, 
-    MdPlayArrow,
     MdContentCopy,
     MdCheck
 } from 'react-icons/md';

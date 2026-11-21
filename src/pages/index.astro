@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { PlayableUniverse } from '../components/PlayableUniverse';
 import SEOKeywords from '../components/SEOKeywords.astro';
-import { EXPERIENCES, PROJECTS, ABOUT, SKILL_CATEGORIES, CONTACT } from '../data/portfolio';
+import { EXPERIENCES, PROJECTS, ABOUT, SKILL_CATEGORIES, CONTACT, CERTIFICATIONS } from '../data/portfolio';
 ---
 
 <Layout title="Vivek Kushwah | Senior Platform & Observability Architect · Playable Cockpit">
@@ -27,6 +27,14 @@ import { EXPERIENCES, PROJECTS, ABOUT, SKILL_CATEGORIES, CONTACT } from '../data
 		<div>
 			<h2>Education</h2>
 			<p>{ABOUT.education.degree} - {ABOUT.education.school} ({ABOUT.education.period})</p>
+		</div>
+		<div>
+			<h2>Certifications &amp; Credentials</h2>
+			<ul>
+				{CERTIFICATIONS.map(c => (
+					<li>{c.name} - {c.issuer} ({c.year})</li>
+				))}
+			</ul>
 		</div>
 		<div>
 			<h2>Career Experiences</h2>

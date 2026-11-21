@@ -9,11 +9,29 @@ export const ABOUT = {
         { value: '40%', label: 'Faster RCA' },
     ],
     education: {
-        degree: "Bachelor of Technology, Computer Science",
+        degree: "Bachelor of Technology in Electrical Engineering",
         school: "MANIT Bhopal",
         period: "2016 – 2020"
     }
 };
+
+export const CERTIFICATIONS = [
+    {
+        name: "Certified Kubernetes Security Specialist (CKS)",
+        issuer: "CNCF / Linux Foundation",
+        year: "2024"
+    },
+    {
+        name: "Certified Kubernetes Administrator (CKA)",
+        issuer: "CNCF / Linux Foundation",
+        year: "2023"
+    },
+    {
+        name: "AWS Certified Solutions Architect – Associate",
+        issuer: "Amazon Web Services",
+        year: "2023"
+    }
+];
 
 export const EXPERIENCES = [
     {
