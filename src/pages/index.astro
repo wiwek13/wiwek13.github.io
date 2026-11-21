@@ -1,23 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { PlayableUniverse } from '../components/PlayableUniverse';
+import { Navbar } from '../components/Navbar';
+import { Hero } from '../components/Hero';
+import { LiveTraceTelemetry } from '../components/LiveTraceTelemetry';
+import { ExperienceSection } from '../components/ExperienceSection';
+import { ProjectsSection } from '../components/ProjectsSection';
+import { CredentialsSection } from '../components/CredentialsSection';
+import { SkillMatrixSection } from '../components/SkillMatrixSection';
+import { ContactSection } from '../components/ContactSection';
+import Footer from '../components/Footer.astro';
 import SEOKeywords from '../components/SEOKeywords.astro';
 import { EXPERIENCES, PROJECTS, ABOUT, SKILL_CATEGORIES, CONTACT, CERTIFICATIONS } from '../data/portfolio';
 ---
 
-<Layout title="Vivek Kushwah | Senior Platform & Observability Architect · Playable Cockpit">
-	{/* Main Playable Hyperfluid 3D Cockpit with Real-time Themes */}
-	<main class="w-screen h-screen overflow-hidden bg-[#07090e]">
-		<PlayableUniverse client:only="react" />
+<Layout title="Vivek Kushwah | Senior Platform & Observability Architect · SRE">
+	{/* Sticky Top Header Navigation */}
+	<Navbar client:load />
+
+	{/* Main Native Engineering Experience */}
+	<main class="min-h-screen bg-[#07090e] text-gray-100 selection:bg-cyan-400 selection:text-black">
+		
+		{/* 1. Executive Hero with Telemetry Ribbon */}
+		<Hero client:load />
+
+		{/* 2. Interactive Distributed Trace & SRE Workbench */}
+		<LiveTraceTelemetry client:visible />
+
+		{/* 3. Enterprise Tenures (Nymcard, Zebpay, Rizzle, Vivvix) */}
+		<ExperienceSection client:visible />
+
+		{/* 4. Flagship Autonomous AI & Observability Projects */}
+		<ProjectsSection client:visible />
+
+		{/* 5. CNCF Certifications & MANIT Academic Foundation */}
+		<CredentialsSection client:visible />
+
+		{/* 6. Technical Skill Arsenal Matrix (Searchable) */}
+		<SkillMatrixSection client:visible />
+
+		{/* 7. Direct Transmissions & 1-Click Comms */}
+		<ContactSection client:visible />
 	</main>
 
-	{/* Accessible Screen-Reader & Semantic Search Engine Indexing (visually hidden from playable canvas) */}
+	{/* Minimalist Engineering Footer */}
+	<Footer />
+
+	{/* Accessible Screen-Reader & Semantic Search Engine Indexing */}
 	<div class="sr-only" aria-label="Vivek Kushwah Portfolio Content Index">
 		<h1>Vivek Kushwah - Senior Platform &amp; Observability Architect</h1>
 		<p>{ABOUT.description}</p>
 		<p>{ABOUT.approach}</p>
 		<div>
-			<h2>Key Metrics</h2>
+			<h2>Key Architecture Metrics</h2>
 			<ul>
 				{ABOUT.stats.map(s => (
 					<li>{s.label}: {s.value}</li>
@@ -29,7 +63,7 @@ import { EXPERIENCES, PROJECTS, ABOUT, SKILL_CATEGORIES, CONTACT, CERTIFICATIONS
 			<p>{ABOUT.education.degree} - {ABOUT.education.school} ({ABOUT.education.period})</p>
 		</div>
 		<div>
-			<h2>Certifications &amp; Credentials</h2>
+			<h2>Certifications</h2>
 			<ul>
 				{CERTIFICATIONS.map(c => (
 					<li>{c.name} - {c.issuer} ({c.year})</li>
